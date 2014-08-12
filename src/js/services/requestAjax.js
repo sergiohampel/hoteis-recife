@@ -1,18 +1,37 @@
-app.factory('requestAjax', ['$http', function($http){
-	var http = {};
-	
-	http.objCache = null;
+app.factory('requestAjax', ['$http', '$q', function($http, $q){
 
-	http.getList = function(url, id){
+	function RequestData() {
+		var that = this;
 
-		return $http({
-			url: url,
-			method: 'GET',
-			params: {
-				resource_id: id
-			}
-		});
+		that.ObjResult = null;
+
+		that.getList = function(url, id){
+			var deferred = $q.defer();
+
+			if (that.ObjResult !== null) {
+				deferred.resolve(that.ObjResult);
+			} else {
+				var request = $http({
+					url: url,
+					method: 'GET',
+					params: {
+						resource_id: id
+					}
+				});
+
+				request.success(function(response){
+					that.ObjResult = response;
+					deferred.resolve(response);
+				});
+
+				request.error(function(response) {
+                   deferred.reject(response);
+                });
+			};
+
+			return deferred.promise;
+		}
 	}
 
-	return http;
+	return new RequestData();
 }]);
