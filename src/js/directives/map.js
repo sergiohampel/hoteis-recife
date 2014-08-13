@@ -52,24 +52,22 @@ app.directive('googleMap', ['requestAjax', function(requestAjax){
 			}
 
 			var url = 'http://dados.recife.pe.gov.br/api/action/datastore_search',
-				id = '0d8fb090-2863-4d51-9b21-baae4bae5a11'
+				id = '0d8fb090-2863-4d51-9b21-baae4bae5a11',
+				getObj = requestAjax.getList(url, id);
 
-			if (requestAjax.objCache !== null) {
-				scope.makeMap(requestAjax.objCache.result.records);
+			getObj.then(
+				// success
+				function(data){
+					if (data.success == true) {
+						scope.makeMap(data.result.records);
+					}
+				},
 
-			} else {
-
-				requestAjax.getList(url, id)
-					.success(function(data, status, headers, config){
-						if (data.success == true) {
-							scope.makeMap(data.result.records);
-							requestAjax.objCache = data;
-						};
-					})
-					.error(function(data, status, headers, config){
-						console.log(data);
-					});
-			}
+				// error
+				function(error){
+					console.log(error);
+				}
+			);
 			
 		}
 	}
