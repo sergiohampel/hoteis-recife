@@ -1,0 +1,15 @@
+<!-- list -->
+<section class="list-content">
+	<input type="text" ng-model="searchString" placeholder="Digite o nome do hotel" class="search">
+
+	<ul class="list">
+		<li data-ng-repeat="item in result | search:searchString">
+			<hgroup>
+				<h1>{{ item.nome }}</h1>
+				<h2>Endereço: {{ item.endereco }}</h2>
+				<h3>Telefone: {{ item.telefone }}</h3>
+				<h4 data-ng-if="item.site !== ''">Site: <a href="http://{{ item.site }}">{{ item.site }}</a></h4>
+			</hgroup>
+		</li>
+	</ul>
+</section>
