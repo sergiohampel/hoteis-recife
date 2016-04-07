@@ -4,7 +4,7 @@ Este é um projeto lab que tem como objetivo o estudo e prática de implementaç
 
 ##URL
 
-Demo: [Hotéis Recife](http://sergiohampel.com/hoteisrecife/ "Hotéis Recife")
+Demo: [Hotéis Recife](http://sergiohampel.github.io/hoteis-recife "Hotéis Recife")
 
 ##Referências
 
