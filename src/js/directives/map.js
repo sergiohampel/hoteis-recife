@@ -43,7 +43,6 @@ app.directive('googleMap', ['requestAjax', function(requestAjax){
 							    		'<h2>Endereço: ' + marker.address + '</h2>' +
 							    		'<h3>Telefone: ' + marker.phone   + '</h3>' +
 						    		'</div>'
-					    		
 					    	);
 					        infowindow.open(map, marker);
 					    }
@@ -68,7 +67,6 @@ app.directive('googleMap', ['requestAjax', function(requestAjax){
 					console.log(error);
 				}
 			);
-			
 		}
 	}
 }]);
